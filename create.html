@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Post</title>
+     <meta name="theme-color" content="#3b82f6"/>
+    <link rel="manifest" href="manifest.json">
+     <link rel="apple-touch-icon" href="/images/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,18 +15,23 @@
 </head>
 <body id="page-create">
     <header class="site-header">
-        <div class="container">
+         <div class="container">
              <div class="logo">
                  <a href="index.html"><i class="fas fa-feather-alt"></i> Pratham Blog</a>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="create.html" class="active"><i class="fas fa-plus-circle"></i> Create Post</a></li>
-                    <li><a href="#" id="admin-login-btn"><i class="fas fa-user-shield"></i> Admin Login</a></li>
-                    <li><a href="#" id="admin-logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
-            </nav>
+             <div class="header-actions">
+                 <button id="theme-toggle-btn" class="btn btn-icon btn-secondary" title="Toggle Theme" aria-label="Toggle Theme">
+                     <i class="fas fa-sun"></i>
+                 </button>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="create.html" class="active"><i class="fas fa-plus-circle"></i> Create Post</a></li>
+                        <li><a href="#" id="admin-login-btn"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                        <li><a href="#" id="admin-logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -34,10 +42,19 @@
                 <div class="form-group">
                     <label for="post-title"><i class="fas fa-heading"></i> Post Title:</label>
                     <input type="text" id="post-title" required>
+                    <span class="error-message" id="title-error"></span>
+                </div>
+                 <div class="form-group">
+                    <label for="post-image"><i class="fas fa-image"></i> Featured Image (Optional):</label>
+                    <input type="file" id="post-image" accept="image/*">
+                    <img id="image-preview" src="#" alt="Image Preview" style="max-width: 200px; margin-top: 10px; display: none;">
+                    <span class="error-message" id="image-error"></span>
                 </div>
                 <div class="form-group">
-                    <label for="post-content"><i class="fas fa-paragraph"></i> Content:</label>
-                    <textarea id="post-content" rows="10" required></textarea>
+                    <!-- **** UPDATED LABEL **** -->
+                    <label for="post-content-editor"><i class="fas fa-paragraph"></i> Content (Markdown Supported):</label>
+                    <textarea id="post-content-editor" rows="15"></textarea> <!-- Increased rows for plain textarea -->
+                    <span class="error-message" id="content-error"></span>
                 </div>
                 <div class="form-group">
                     <label for="post-tags"><i class="fas fa-tags"></i> Tags (comma-separated):</label>
@@ -49,9 +66,10 @@
     </main>
 
     <footer class="site-footer">
-        <div class="container">
+        <!-- Footer content... remains the same -->
+         <div class="container">
             <div class="footer-content">
-                <div class="footer-column footer-about">
+                 <div class="footer-column footer-about">
                     <h4><i class="fas fa-feather-alt"></i> Pratham Blog</h4>
                     <p>Sharing knowledge and insights from the developer community. Write, share, and learn together.</p>
                     <div class="social-links">
@@ -75,7 +93,7 @@
                     <h4>Contact Us</h4>
                     <p><i class="fas fa-map-marker-alt"></i> 123 Dev Street, Code City, CS 10101</p>
                     <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-                    <p><i class="fas fa-envelope"></i> info@Pratham Blog.com</p>
+                    <p><i class="fas fa-envelope"></i> info@prathamblog.com</p>
                 </div>
                 <div class="footer-column footer-newsletter">
                     <h4>Newsletter</h4>
@@ -91,6 +109,27 @@
             </div>
         </div>
     </footer>
+
+     <div id="password-modal" class="modal-overlay" style="display: none;">
+        <!-- Modal content... remains the same -->
+         <div class="modal-dialog">
+             <form id="password-form">
+                 <div class="modal-content">
+                     <h3 class="modal-title">Admin Login</h3>
+                     <p>Please enter the admin password:</p>
+                     <div class="form-group" style="margin-top: 1rem; margin-bottom: 0;">
+                         <label for="admin-password-input" class="sr-only">Password</label>
+                         <input type="password" id="admin-password-input" required placeholder="Password">
+                         <span class="error-message" id="password-error"></span>
+                     </div>
+                 </div>
+                 <div class="modal-actions">
+                     <button type="button" id="password-cancel-btn" class="btn btn-secondary">Cancel</button>
+                     <button type="submit" id="password-submit-btn" class="btn btn-primary">Login</button>
+                 </div>
+             </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
