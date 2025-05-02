@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pratham Blog Platform</title>
+    <meta name="theme-color" content="#3b82f6"/>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="/images/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,14 +19,24 @@
             <div class="logo">
                 <a href="index.html"><i class="fas fa-feather-alt"></i> Pratham Blog</a>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="create.html"><i class="fas fa-plus-circle"></i> Create Post</a></li>
-                    <li><a href="#" id="admin-login-btn"><i class="fas fa-user-shield"></i> Admin Login</a></li>
-                    <li><a href="#" id="admin-logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
-            </nav>
+            <div class="header-actions">
+                 <div class="search-container">
+                    <label for="search-input" class="sr-only">Search Posts</label>
+                    <input type="search" id="search-input" placeholder="Search posts...">
+                    <button id="search-clear-btn" class="btn-secondary btn-sm" style="display: none;" title="Clear Search" aria-label="Clear Search"><i class="fas fa-times"></i></button>
+                </div>
+                <button id="theme-toggle-btn" class="btn btn-icon btn-secondary" title="Toggle Theme" aria-label="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                 <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="create.html"><i class="fas fa-plus-circle"></i> Create Post</a></li>
+                        <li><a href="#" id="admin-login-btn"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                        <li><a href="#" id="admin-logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -44,6 +57,7 @@
                 <div id="recent-posts-container">
                     <div id="blog-post-list" class="post-list">
                          </div>
+                     <div id="pagination-controls" class="pagination"></div>
                 </div>
             </section>
         </section>
@@ -77,7 +91,7 @@
                     <h4>Contact Us</h4>
                     <p><i class="fas fa-map-marker-alt"></i> 123 Dev Street, Code City, CS 10101</p>
                     <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-                    <p><i class="fas fa-envelope"></i> info@Pratham Blog.com</p>
+                    <p><i class="fas fa-envelope"></i> info@prathamblog.com</p>
                 </div>
                 <div class="footer-column footer-newsletter">
                     <h4>Newsletter</h4>
@@ -116,6 +130,7 @@
                      <div class="form-group" style="margin-top: 1rem; margin-bottom: 0;">
                          <label for="admin-password-input" class="sr-only">Password</label>
                          <input type="password" id="admin-password-input" required placeholder="Password">
+                         <span class="error-message" id="password-error"></span>
                      </div>
                  </div>
                  <div class="modal-actions">
